@@ -1,27 +1,28 @@
 import Image from "next/image";
 import { courses, wedding } from "@/data/menu";
 
+function Rule() {
+  return (
+    <div className="mx-auto mb-8 flex max-w-[14rem] items-center gap-3" aria-hidden>
+      <span className="h-px flex-1 bg-sage/35" />
+      <svg viewBox="0 0 24 24" className="h-3 w-3 fill-sage-soft">
+        <path d="M12 1.2 14.1 9.2 22.2 12 14.1 14.8 12 22.8 9.9 14.8 1.8 12 9.9 9.2 12 1.2Z" />
+      </svg>
+      <span className="h-px flex-1 bg-sage/35" />
+    </div>
+  );
+}
+
 export default function Menu() {
   return (
-    <div className="relative">
-      <div aria-hidden className="pointer-events-none fixed inset-0 z-0">
-        <Image
-          src="/2.jpg"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover object-[center_42%]"
-        />
-        <div className="absolute inset-0 bg-cream/78 sm:bg-cream/88" />
-      </div>
-
+    <div className="bg-cream">
       <h1 className="sr-only">
         Il menù di {wedding.bride} e {wedding.groom}
       </h1>
 
       <nav
         aria-label="Portate"
-        className="sticky top-0 z-20 border-b border-pink/40 bg-cream/90 backdrop-blur-md"
+        className="sticky top-0 z-20 border-b border-sage/20 bg-cream/95 backdrop-blur-md"
       >
         <ul className="menu-nav mx-auto grid max-w-3xl grid-cols-5 px-2 py-3 sm:flex sm:gap-1 sm:overflow-x-auto sm:px-3">
           {courses.map((course) => (
@@ -37,15 +38,13 @@ export default function Menu() {
         </ul>
       </nav>
 
-      <main className="relative z-10">
-        <div className="content-reveal relative mx-auto max-w-xl px-6 pb-8 pt-14 text-center">
-          <p className="text-sm uppercase tracking-[0.3em] text-sage">
-            Ricevimento
-          </p>
+      <main>
+        <div className="content-reveal mx-auto max-w-xl px-6 pb-8 pt-14 text-center">
+          <p className="text-sm uppercase tracking-[0.3em] text-sage">Ricevimento</p>
           <p className="mt-2 font-serif text-3xl font-light text-charcoal">
             {wedding.venue}
           </p>
-          <p className="mt-1 text-base italic text-charcoal/60">{wedding.place}</p>
+          <p className="mt-1 text-base italic text-sage-soft">{wedding.place}</p>
         </div>
 
         {courses.map((course) => (
@@ -53,13 +52,13 @@ export default function Menu() {
             key={course.id}
             id={course.id}
             aria-labelledby={`${course.id}-title`}
-            className="relative scroll-mt-20 px-6 py-10"
+            className="scroll-mt-20 px-6 py-10"
           >
             <div className="mx-auto max-w-xl text-center">
-              <div className="mx-auto mb-8 h-px max-w-xs bg-gradient-to-r from-transparent via-pink/80 to-transparent" />
+              <Rule />
               <h2
                 id={`${course.id}-title`}
-                className="font-italianno text-[3.25rem] leading-none text-sage sm:text-[3.5rem]"
+                className="font-italianno text-[3.25rem] leading-none text-charcoal sm:text-[3.5rem]"
               >
                 {course.label}
               </h2>
@@ -70,7 +69,7 @@ export default function Menu() {
                       {item.name}
                     </p>
                     {item.note ? (
-                      <p className="mt-1 text-lg italic leading-relaxed text-charcoal/65">
+                      <p className="mt-1 text-lg italic leading-relaxed text-sage">
                         {item.note}
                       </p>
                     ) : null}
@@ -81,30 +80,24 @@ export default function Menu() {
           </section>
         ))}
 
-        <div className="relative px-6 pb-16 pt-6 text-center">
-          <div className="mx-auto mb-8 h-px max-w-xs bg-gradient-to-r from-transparent via-pink/80 to-transparent" />
+        <div className="px-6 pb-16 pt-6 text-center">
+          <Rule />
           <p className="text-lg italic text-sage">I vini accompagnano ogni portata.</p>
-          <p className="mt-8 font-script text-5xl text-sage">
+          <p className="mt-8 font-italianno text-5xl text-charcoal">
             {wedding.bride} e {wedding.groom}
           </p>
         </div>
       </main>
 
-      <footer className="relative z-10 overflow-hidden px-6 py-16 text-center">
-        <Image
-          src="/3.jpg"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover object-[center_22%] sm:object-[center_25%]"
-        />
-        <div aria-hidden className="absolute inset-0 bg-black/50" />
-        <div className="relative">
-          <p className="font-serif text-2xl text-cream">
-            {wedding.bride} & {wedding.groom}
-          </p>
-          <p className="mt-2 text-sm text-cream/75">{wedding.dateLabel}</p>
-          <p className="mt-6 text-xs text-cream/60">A tavola, con amore</p>
+      <footer className="bg-cream px-6 pb-16 text-center">
+        <div className="mx-auto max-w-md">
+          <Image
+            src="/illustration.jpg"
+            alt="Illustrazione del ricevimento: Nicole e Francesco ballano sotto le luci, con il cane e la tavola imbandita. 20 maggio 2027."
+            width={1024}
+            height={1024}
+            className="h-auto w-full"
+          />
         </div>
       </footer>
     </div>
